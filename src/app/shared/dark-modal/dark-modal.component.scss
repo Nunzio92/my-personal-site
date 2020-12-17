@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'Princess';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/PrincesSANDTHEFROG.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:host {
+  margin: 0;
+  font-family: 'Princess';
+  height: 100vh;
+  //overflow: hidden;
+
+  .container {
+    height: 0px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    margin: auto;
+
+    .wrap {
+      background: white;
+      position: absolute;
+      height: 100vh;
+      width: 100%;
+    }
+
+    video {
+      mix-blend-mode: multiply;
+      top: calc(50% + 40px);
+      position: absolute;
+      left: 0;
+      width: 65vw;
+      transform: translateY(-50%);
+      right: 0;
+      margin: auto;
+      z-index: 20;
+      @media screen and (max-width: 1024px) {
+        position: fixed;
+        width:220vw;
+        left: -195px
+      }
+    }
+
+    img.a {
+      position: absolute;
+      top: 0;
+      width: 65vw;
+      left: 0;
+      z-index: 20;
+    }
+
+    img.b {
+      position: absolute;
+      mix-blend-mode: exclusion;
+      width: 65vw;
+      top: calc(50% - 40px);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 20;
+    }
+
+    &_inner {
+      mix-blend-mode: lighten;
+
+      h1 {
+        color: white;
+        font-weight: normal;
+        font-size: 15px;
+        opacity: 0;
+        transition: all 0.8s 0.2s;
+      }
+
+      p {
+        color: white;
+        opacity: 0.6;
+        line-height: 18px;
+        font-size: 12px;
+        margin: 16px 0;
+        opacity: 0;
+        transition: all 0.8s 0.4s;
+      }
+
+      img {
+        opacity: 0;
+        transition: all 0.8s 0.3s;
+      }
+
+      a {
+        color: white;
+        font-size: 12px;
+        border-bottom: 1px solid white;
+        opacity: 0;
+        transition: all 0.8s 0.5s;
+        cursor: pointer;
+      }
+    }
+
+    & .wrap_inner {
+      top: calc(50%);
+      text-align: center;
+      position: fixed;
+      left: 0;
+      right: 0;
+      mix-blend-mode: screen;
+      margin: auto;
+      width: 280px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      z-index: 30;
+    }
+  }
+}
+
+.tab-button {
+  position: absolute;
+  z-index: 3;
+  color: white;
+  background: rgba(61, 21, 24, 0.54);
+  display: block;
+  width: 132px;
+  text-align: center;
+  border-radius: 2px;
+  top: 50%;
+  padding: 13px;
+  right: 0;
+  margin: auto;
+  transform: translateY(-50%);
+  font-size: 12px;
+  left: -90px;
+  cursor: pointer;
+  transition: background .7s;
+
+  &:hover {
+    background: rgb(61, 21, 24);
+  }
+
+}
+
+/* YAY CSS TRICKS! */
+
+img.a {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+.no-opacity {
+  opacity: 1 !important;
+}
+
+:host {
+  left: 20%;
+  position: relative;
+}
+

@@ -1,0 +1,220 @@
+$font-color: #000;
+$primary-color: #00aa47;
+$a-link-color: #009256;
+$secondary-color: #5ccf96;
+$border-secondary-color: #37af73;
+$box-shadow: 0 0 16px 8px rgba(0, 0, 0, 0.06);
+$box-shadow-2: 0 0 23px 0 rgba(0, 0, 0, 0.06);
+$box-shadow-card-small: 0 0 16px 8px rgba(0, 0, 0, 0.06);
+$font-primary-color: #141414;
+$font-black-color: #000;
+$font-color-white: #fff;
+$background-white: #fff;
+$border-color-white: #fff;
+
+// header
+$background-header: #fff;
+
+// footer
+$background-footer: #000;
+
+// main onboarding
+$background-main: #fff;
+
+// corner-all border-radius
+$border-radius-small: 8px;
+$border-radius-all: 16px;
+
+// avvertenze component
+$background-avvertenze: #f8fcfa;
+$font-color-avvertene: #65747c;
+
+// input form
+$border-select-wrap: #a9a9a9;
+$empty-color: #919fb3;
+$input-border-color: #afbac1;
+$input-placheholder-color: #9da9b1;
+$border-input-radio: #919fb3;
+$color-input-rado-label: #919fb3;
+$textarea-border-color: #d7dde1;
+$input-padding: 8px;
+$input-font-size: 18px;
+$background-input: #f2faf7;
+$input-color: #000;
+$border-color-active: #9da9b1;
+
+// label
+$color-label: #000;
+$label-font-size: 18px;
+$label-font-weigth: 300;
+
+// form-group
+$form-group-margin-bottom: 43px;
+$form-group-small-prefix-font-size: 18px;
+$form-group-error-message-font-size: 12px;
+$form-group-error-message-margin: 5px 0 0;
+$form-group-error-message-font-weight: 400;
+$form-group-error-message-padding: 2px 8px;
+
+// tooltip
+$background-tooltip-warning: #ff6868;
+$box-shadow-tooltip: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);
+$background-tooltip:#333;
+$border-color-tooltip:#333;
+$background-invalid-tooltip:#ff3f3f;
+$border-invalid-tooltip:#ff3f3f;
+
+// buttons
+$backgrund-button-primary: #00aa47;
+$border-button-primary: #00aa47;
+$backgrund-button-primary-active: #049641;
+$border-button-primary-active: #049641;
+$backgrund-button-primary-empty-active: #5ccf96;
+$border-button-primary-empty-active: #5ccf96;
+$backgrund-button-primary-empty-disabled: #37af73;
+$border-button-primary-empty-disabled: #37af73;
+$button-font-size: 16px;
+$button-font-size-mobile: 14px;
+$button-font-weight: 500;
+$button-padding: 9px 25px;
+$button-padding-mobile: 9px 14px;
+$button-border-radius: 8px;
+$button-border-radius-mobile: 8px;
+$button-transparent-font-size: 18px;
+
+// isInvalid
+$background-IsInvalid: #f2faf7;
+$border-color-isInvalid:#ef9065;
+$font-color-isInvalid:#ef9065;
+$input-isInvalid-padding-rigth: 40px;
+
+// disabled
+$font-color-disabled: #999;
+$border-color-disabled: #bbb;
+$background-color-disabled: #ddd;
+
+// isWarning
+$background-isWarning: #f2faf7;
+$border-isWarning:#ef9065;
+$color-isWarning:#ef9065;
+$input-isWarning-padding-rigth: 40px;
+
+// info-form
+$info-margin-bottom: 23px;
+$info-title-font-size: 18px;
+$info-text-font-size: 24px;
+$info-h4-title-font-size: 24px;
+
+$single-title-font-size: 18px;
+$single2-title-font-size: 24px;
+
+// checkBox
+$input-checkbox-width: 20px;
+$input-checkbox-height: 20px;
+$input-checkbox-border-radius: 4px;
+
+// input radio card small
+$input-radio-border-radius: 50%;
+$input-radio-card-small-border-color: #00aa47;
+$input-radio-card-small-width: 29px;
+$input-radio-card-small-height: 29px;
+
+// input radio card small
+$input-radio-width: 15px;
+$input-radio-height: 15px;
+
+// select
+$select-font-size: 18px;
+$select-padding: 10px 17px;
+$select-option-padding: 10px 17px;
+
+// textarea
+$textarea-min-height: 150px;
+$textarea-padding: 10px 15px;
+$textarea-font-size: 18px;
+
+// card warning
+$p-color: #919fb3;
+$card-warning-padding: 16px;
+
+// table
+$color-th: #919fb3;
+$color-td: #4e4e4e;
+
+// otp
+$color-title-otp: #000;
+$color-p: #518981;
+$input-color-otp: #f2faf7;
+$input-border-color-otp: #f2faf7;
+
+// sessione-scaduta
+$background-dialog: #fff;
+
+// landings
+$not-found-h4: #848484;
+
+// onboarding
+$background-white-on: #fff;
+$border-white-on: #fff;
+$color-white-on: #fff;
+$color-info-title: #000;
+$background-onboarding: #ecf4fa;
+$background-wrap-check: transparent;
+$color-text-wrap-check: #000;
+$font-color-black: #000;
+
+// stepper
+$background-stepper: #c3ccd2;
+$background-bar: #65747c;
+$border-top-color: #dadada;
+
+$font-color-stepper: #fff;
+$box-shadow-stepper: rgba(255, 255, 255, 0.3);
+$background-stepper-controller: #fff;
+$color-button-stepper-controller: #fff;
+$font-color-stepper-controller: #074067;
+$box-shadow-stepper-controller: rgba(0, 0, 0, 0.06);
+
+// specific var for steps
+$background-step5: #f5fafb;
+
+// card-small step2/7
+$card-small-role-font-size: 14px;
+$card-small-role-line-height: 1.3;
+$card-small-role-color: #65747c;
+$card-small-role-margin-top: 8px;
+$card-small-name-surname-font-size: 20px;
+$card-small-name-surname-font-wigth: bold;
+$card-small-name-surname-color: #00aa47;
+$card-small-name-surname-line-height: 1.3;
+
+// wrap-check
+$wrap-check-margin-top: 14px;
+$wrap-check-padding: 24px 19px;
+$wrap-check-check-width: 15px;
+$wrap-check-check-width-tablet: 20px;
+$wrap-check-text-font-size: 16px;
+$wrap-check-text-padding-left: 12px;
+$wrap-check-text-strong-margin-top: 19px;
+$wrap-check-text-strong-font-weight: 500;
+
+// accordion
+$accordion-margin-bottom: 25px;
+$accordion-title-padding: 24px 16px;
+$accordion-title-font-size: 24px;
+$accordion-title-font-weight: 400;
+$accordion-body-padding: 0 16px 16px;
+
+// swiper
+$swiper-title-color: #406d96;
+$swiper-title-font-size: 24px;
+$swiper-title-font-weight: 600;
+$swiper-title-margin-bottom: 24px;
+
+// step7/8
+$button-disabled-color-green-ok:#5ccf96;
+
+//mediaQuery
+$min-width-tablet: 768px;
+$max-width-tablet: 1024px;
+$max-width-mobile: 768px;

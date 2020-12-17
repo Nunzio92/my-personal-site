@@ -1,0 +1,21 @@
+<div class='container'>
+    <div class='wrap'>
+        <video muted="muted" onloadedmetadata="this.muted = true" data-depth='50' height='540' id='myVideo' width='620'
+               #video>
+            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/ink4.mp4" type="video/mp4">
+        </video>
+        <img class='b' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/clockwork.png'>
+        <div class='wrap_inner' [class.no-opacity]="showtext">
+            <div class='container_inner' [class.no-opacity]="showtext">
+                <h1 [class.no-opacity]="showtext">WellCome to BDM Gearcalculator</h1>
+                <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/trill.png' [class.no-opacity]="showtext">
+                <p [class.no-opacity]="showtext">
+                    This site use therd part img from copiright of pel Abyss, for non lucration intent this tool is made
+                for help adventure to calculate stat! Enjoy! For bug report or improvement request mail to:
+                    bdmcalculator@gmail.com
+                </p>
+                <a [class.no-opacity]="showtext" (click)="closeModal()">confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
