@@ -1,11 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { closeModal, openModal, startFog, startLoading, stopFog, stopLoading, successInitAppStore } from '../actions';
 import { DeviceInfo } from '../../model/device-info';
+import { ScrollState, SiteSettings } from '../../model/app-interfaces';
 
-export interface ScrollState {
-  isScrollingUp: boolean;
-  yOffset: number;
-}
 
 export interface AppState {
   // app is loading something
@@ -13,8 +10,7 @@ export interface AppState {
   scrollState: ScrollState;
   deviceInfo: DeviceInfo | null;
   modalIsOpen: boolean;
-  fog: boolean;
-
+  settings: SiteSettings;
 }
 
 export const initialState: AppState = {
@@ -25,17 +21,17 @@ export const initialState: AppState = {
   },
   deviceInfo: null,
   modalIsOpen: false,
-  fog: false
+  settings: {showSettings: false, fog: false, neonStatus: {visible: true, activeColor: 'purple'}}
 };
 
 const appReducer = createReducer(initialState,
   on(startLoading, (state) => ({...state, loading: true})),
   on(stopLoading, (state) => ({...state, loading: false})),
   on(successInitAppStore, (state, {deviceInfo}) => ({...state, deviceInfo})),
-  on(openModal, (state) => ({...state, modalIsOpen: true, fog: true})),
-  on(closeModal, (state) => ({...state, modalIsOpen: false, fog: false})),
-  on(startFog, (state) => ({...state, fog: true})),
-  on(stopFog, (state) => ({...state, fog: false})),
+  on(openModal, (state) => ({...state, modalIsOpen: true, settings: {...state.settings, fog: true}})),
+  on(closeModal, (state) => ({...state, modalIsOpen: false,  settings: {...state.settings, fog: false}})),
+  on(startFog, (state) => ({...state,  settings: {...state.settings, fog: true}})),
+  on(stopFog, (state) => ({...state,  settings: {...state.settings, fog: false}})),
 );
 
 

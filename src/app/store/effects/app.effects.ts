@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { initAppStore, scrollDown, scrollUp, successInitAppStore } from '../actions';
+import { changeNeonColor, initAppStore, scrollDown, scrollUp, successInitAppStore } from '../actions';
 import { auditTime, map, switchMap, tap } from 'rxjs/operators';
 
 import { from, fromEvent } from 'rxjs';
@@ -33,7 +33,7 @@ export class AppEffects {
    */
   initAppStore$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(initAppStore.type),
+      ofType(initAppStore),
       switchMap(() => {
           return from(this.promiseDeviceInfo()).pipe(map(
             (res) => {
@@ -44,6 +44,13 @@ export class AppEffects {
           ));
         },
       )));
+
+
+  changeNeonColor$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(changeNeonColor),
+      tap(action => document.documentElement.style.setProperty('--neon-color', action.colorValue)
+      )), {dispatch: false});
 
 
   // TODO per debuggare in mobile, è un listener di tutte le action

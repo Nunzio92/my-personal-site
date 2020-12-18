@@ -21,6 +21,8 @@
     "@angular/router": "~11.0.4",
     "@capacitor/cli": "^2.4.5",
     "@capacitor/core": "^2.4.5",
+    "@ng-select/ng-select": "^5.0.9",
+    "@ngrx/component": "^10.1.1",
     "@ngrx/effects": "^10.1.1",
     "@ngrx/store": "^10.1.1",
     "@ngrx/store-devtools": "^10.1.1",

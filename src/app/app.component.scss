@@ -1,0 +1,78 @@
+.sfondo {
+  //background-image: url("../assets/sfondo.jpg");
+  //background-color: gray;
+  //background-image: linear-gradient(top right, #FFFFFF 0%, #AACFEF 100%);
+  //background-size: 100% auto;
+  //background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  //z-index: 0;
+  //position: absolute;
+  background-color: #1d1d1d;
+  //background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+
+
+
+  @media screen and (max-width: 1024px) {
+    background-size: auto 100%;
+  }
+
+}
+
+
+.fog {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+
+.fog-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0px;
+  //z-index: 1;
+}
+
+.fog-img {
+  position: absolute;
+  height: 100vh;
+  width: 300vw;
+  //z-index: 2;
+}
+
+.fog-img-first {
+  background: url("../assets/fog/fog-1.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  animation: marquee 120s linear infinite;
+}
+
+.fog-img-second {
+  background: url("../assets/fog/fog-2.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-200vw, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+svg{
+  position: absolute; top: 25px; right: 200px;
+  fill: var(--neon-color);
+}

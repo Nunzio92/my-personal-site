@@ -1,0 +1,12 @@
+$font-color: #000;
+
+:root {
+  --primary-color: #08fdd8;
+  --secondary-color: #00fcfe;
+  --neon-color: #800080;
+}
+
+//mediaQuery
+$min-width-tablet: 768px;
+$max-width-tablet: 1024px;
+$max-width-mobile: 768px;

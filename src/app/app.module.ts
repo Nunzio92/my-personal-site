@@ -7,13 +7,18 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { MetaReducer, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { environment } from '../environments/environment';
+import { devDep, environment } from '../environments/environment';
+import { AppStoreModule } from './store/app-store.module';
+import { FormsModule } from '@angular/forms';
+import { ReactiveComponentModule } from '@ngrx/component';
+import { SeggingsButtonsComponent } from './shared/settings-buttons/seggings-buttons.component';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SeggingsButtonsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,10 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
       }
     ),
     EffectsModule.forRoot([]),
+    AppStoreModule,
+    ReactiveComponentModule,
+    devDep,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

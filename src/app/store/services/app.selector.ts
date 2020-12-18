@@ -19,7 +19,11 @@ const getModalState = createSelector(
 );
 const getFogStatus = createSelector(
     getEntityState,
-    (state: EntityState) => state.app.fog
+    (state: EntityState) => state.app.settings?.fog
+);
+const getNeonStatus = createSelector(
+    getEntityState,
+    (state: EntityState) => state.app.settings?.neonStatus
 );
 export const getScrollingState = createSelector(
   getEntityState,
@@ -30,8 +34,9 @@ export const getScrollingState = createSelector(
 export class AppSelectors {
     constructor(private store: Store<EntityState>) {
     }
-  scrollState$ = this.store.pipe(select(getScrollingState), map(e => ObjectUtility.deepClone(e)));
+    scrollState$ = this.store.pipe(select(getScrollingState), map(e => ObjectUtility.deepClone(e)));
     modalIsOpen$ = this.store.pipe(select(getModalState), map(e => ObjectUtility.deepClone(e)));
     fogStatus$ = this.store.pipe(select(getFogStatus), map(e => ObjectUtility.deepClone(e)));
+    neonStatus$ = this.store.pipe(select(getNeonStatus), map(e => ObjectUtility.deepClone(e)));
 
 }

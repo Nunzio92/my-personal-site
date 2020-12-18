@@ -4,22 +4,28 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { RouterModule } from '@angular/router';
 import { TeleportHtmlDirective } from './directives/teleport-html.directive';
 import { DarkModalComponent } from './dark-modal/dark-modal.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
   declarations: [
     TeleportHtmlDirective,
-    DarkModalComponent
+    DarkModalComponent,
+    SideMenuComponent
   ],
   imports: [
     CommonModule,
     NgxUsefulSwiperModule,
-    RouterModule
+    RouterModule,
+    NgSelectModule
   ],
   exports: [
     NgxUsefulSwiperModule,
     RouterModule,
-    DarkModalComponent
+    DarkModalComponent,
+    SideMenuComponent,
+    NgSelectModule
   ]
 
 })
