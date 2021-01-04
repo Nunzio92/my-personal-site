@@ -10,17 +10,39 @@
 <body>
   <app-root>
     <style>
-      .img-spinning-circle {display: inline-block;width: 64px;height: 64px;margin: auto;position: absolute;top: 0;left: 0;bottom: 0;right: 0;
+      #lightsaber {
+        width:100vw;
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        top: 0;
+        left: 0;
+        margin:auto;
+        line-height:0;
+        text-align:center;
+        z-index: 1000;
+        background: #1d1d1d;
       }
-      .img-spinning-circle:after {
-        content: " ";display: block;width: 46px;height: 46px;margin: 1px;border-radius: 50%;border: 5px solid;border-color: #000000 transparent;animation: lds-dual-ring 1.2s linear infinite;
-      }
-      @keyframes lds-dual-ring {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(360deg);}
+      #lightsaber span { display:inline-block; }
+
+      #light {
+        position:relative;
+        margin: auto;
+        width:14px;
+        background:#fff;
+        height:520px;
+        border-radius:7px;
+        box-shadow:0 0 5px #fff,0 0 8px #fff,0 0 12px #fff,0 0 15px blue,0 0 25px blue;
+        z-index:5;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        transition: all 1s;
       }
     </style>
-    <div class="img-spinning-circle"></div>
+    <div id="lightsaber">
+      <span id="light"></span>
+    </div>
+
   </app-root>
 </body>
 </html>

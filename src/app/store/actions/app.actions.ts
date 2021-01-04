@@ -58,3 +58,25 @@ export const changeNeonColor = createAction(
   '[SETTINGS] CHANGE_NEON_COLOR',
   props<{ colorValue: string }>()
 );
+export const changeNeonStatus = createAction(
+  '[SETTINGS] CHANGE_NEON_STATUS',
+  props<{ value: boolean }>()
+);
+
+export const hideSetting = createAction(
+  '[SETTINGS] HIDE_SETTING',
+);
+export const showSetting = createAction(
+  '[SETTINGS] SHOW_SETTING',
+);
+
+export const activeDragNav = createAction(
+  '[SETTINGS] ACTIVE_DRAG_NAV',
+);
+
+export const setDragNavPosition = createAction(
+  '[SETTINGS] SET_POSITION_AND_DEACTIVE_DRAG_NAV',
+  props<{ selectedIndex: number }>()
+);
+
+

@@ -1,24 +1,6 @@
-.sfondo {
-  //background-image: url("../assets/sfondo.jpg");
-  //background-color: gray;
-  //background-image: linear-gradient(top right, #FFFFFF 0%, #AACFEF 100%);
-  //background-size: 100% auto;
-  //background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  //z-index: 0;
-  //position: absolute;
-  background-color: #1d1d1d;
-  //background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
-
-
-
-  @media screen and (max-width: 1024px) {
-    background-size: auto 100%;
-  }
-
+.hide{
+  visibility: hidden;
 }
-
 
 .fog {
   position: relative;
@@ -28,7 +10,7 @@
 }
 
 .fog-container {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -76,3 +58,38 @@ svg{
   position: absolute; top: 25px; right: 200px;
   fill: var(--neon-color);
 }
+
+/*
+ * == lightsaber Styles
+ */
+
+#lightsaber {
+  //width:50px;
+  width:100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  margin:auto;
+  line-height:0;
+  text-align:center;
+  z-index: 1000;
+  background: #1d1d1d;
+}
+#lightsaber span { display:inline-block; }
+
+#light {
+  position:relative;
+  margin: auto;
+  width:14px;
+  background:#fff;
+  height:520px;
+  border-radius: 7px;
+  box-shadow:0 0 5px #fff,0 0 8px #fff,0 0 12px #fff,0 0 15px var(--neon-color),0 0 25px var(--neon-color);
+  z-index:5;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+

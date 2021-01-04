@@ -25,6 +25,22 @@ const getNeonStatus = createSelector(
     getEntityState,
     (state: EntityState) => state.app.settings?.neonStatus
 );
+const getNavStatus = createSelector(
+    getEntityState,
+    (state: EntityState) => state.app.settings?.navBarStatus
+);
+const getGrabNavStatus = createSelector(
+    getEntityState,
+    (state: EntityState) => state.app.settings?.navBarStatus?.canDragNav
+);
+const getNeonColor = createSelector(
+    getEntityState,
+    (state: EntityState) => state.app.settings?.neonStatus?.activeColor
+);
+const getSettingStatus = createSelector(
+    getEntityState,
+    (state: EntityState) => state.app.settings?.showSettings
+);
 export const getScrollingState = createSelector(
   getEntityState,
   (state: EntityState) => state.app.scrollState
@@ -38,5 +54,9 @@ export class AppSelectors {
     modalIsOpen$ = this.store.pipe(select(getModalState), map(e => ObjectUtility.deepClone(e)));
     fogStatus$ = this.store.pipe(select(getFogStatus), map(e => ObjectUtility.deepClone(e)));
     neonStatus$ = this.store.pipe(select(getNeonStatus), map(e => ObjectUtility.deepClone(e)));
+    navbarStatus$ = this.store.pipe(select(getNavStatus), map(e => ObjectUtility.deepClone(e)));
+    canDragNav$ = this.store.pipe(select(getGrabNavStatus), map(e => ObjectUtility.deepClone(e)));
+    neonColor$ = this.store.pipe(select(getNeonColor), map(e => ObjectUtility.deepClone(e)));
+    showSettings$ = this.store.pipe(select(getSettingStatus), map(e => ObjectUtility.deepClone(e)));
 
 }

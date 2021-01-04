@@ -1,0 +1,214 @@
+@import "../../../styles/variables";
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.scrollami-baby {
+  width: 68px;
+  height: 100vh;
+  pointer-events: all;
+  position: absolute;
+  right: 0;
+}
+
+.expand-area {
+  width: 95vw !important;
+}
+
+.opacity {
+  background: #00000029 !important;
+  transition: all 0.3s linear;
+}
+
+swiper {
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.swiper-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: rgba(253, 253, 253, 0);
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
+.menu {
+  flex-direction: column;
+  pointer-events: all;
+
+  min-width: 100px;
+  width: 70%;
+  max-width: 320px;
+
+  background-color: rgba(234, 234, 234, 0.96);
+  color: #454f63;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-element {
+  color: #454f63;
+  cursor: pointer;
+  margin-left: 15px;
+  text-decoration: none;
+  transition: all ease-in-out 0.5s;
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.nav-element:focus {
+  outline: none !important;
+}
+
+
+.nav-element-active {
+  font-weight: bold;
+  font-size: 1.45rem;
+}
+
+.nav-element-active:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #454f63;
+  visibility: visible !important;
+  transform: scaleX(1) !important;
+}
+
+.nav-element:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #454f63;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-element:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+
+.burger-menu-swiper {
+  pointer-events: all;
+  background-color: rgba(234, 234, 234, 0.96);
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+
+  .bar1 {
+    width: 35px;
+    height: 2px;
+    background-color: $font-color;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    transition: 0.4s;
+  }
+
+  .bar2 {
+    width: 35px;
+    height: 2px;
+    margin-bottom: 10px;
+    transition: 0.4s;
+    background-color: black;
+  }
+
+  .bar3 {
+    width: 35px;
+    height: 2px;
+    background-color: black;
+    transition: 0.4s;
+  }
+
+  @media (max-width: $max-width-mobile) {
+    .bar1,
+    .bar2,
+    .bar3 {
+      width: 25px;
+      margin-bottom: 5px;
+    }
+    .bar3 {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Rotate first bar */
+  &.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 8px);
+    transform: rotate(-45deg) translate(-9px, 8px);
+    @media (max-width: $max-width-mobile) {
+      -webkit-transform: rotate(-45deg) translate(-5px, 5px);
+      transform: rotate(-45deg) translate(-5px, 5px);
+    }
+  }
+
+  /* Fade out the second bar */
+  &.change .bar2 {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  /* Rotate last bar */
+  &.change .bar3 {
+    opacity: 0;
+  }
+}
+
+
+
+
+.setting{
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 2;
+
+  img{
+    padding-right: 30px;
+  }
+}

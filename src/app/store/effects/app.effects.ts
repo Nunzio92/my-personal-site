@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { changeNeonColor, initAppStore, scrollDown, scrollUp, successInitAppStore } from '../actions';
-import { auditTime, map, switchMap, tap } from 'rxjs/operators';
+import { changeNeonColor, changeNeonStatus, initAppStore, scrollDown, scrollUp, setDragNavPosition, successInitAppStore } from '../actions';
+import { auditTime, concatMap, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
-import { from, fromEvent } from 'rxjs';
+import { from, fromEvent, of } from 'rxjs';
 import { DeviceInfo } from '../../model/device-info';
 import { Capacitor, Device } from '@capacitor/core';
+import { AppSelectors } from '../services/app.selector';
+import { StorageManagerService } from '../../core/storage-manager/storage-manager.service';
+import { ApplicationParams } from '../../shared/application-params';
+import { Store } from '@ngrx/store';
 
 
 @Injectable()
@@ -35,7 +39,11 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(initAppStore),
       switchMap(() => {
-          return from(this.promiseDeviceInfo()).pipe(map(
+        const neonColor = this.storageManager.getLocalItem(ApplicationParams.NEON_COLOR);
+        if (!!neonColor){
+          this.store.dispatch(changeNeonColor({colorValue: neonColor}));
+        }
+        return from(this.promiseDeviceInfo()).pipe(map(
             (res) => {
               return successInitAppStore({
                 deviceInfo: res
@@ -48,8 +56,27 @@ export class AppEffects {
 
   changeNeonColor$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(changeNeonColor),
-      tap(action => document.documentElement.style.setProperty('--neon-color', action.colorValue)
+      ofType(changeNeonColor, changeNeonStatus),
+      concatMap(action => of(action).pipe(
+        withLatestFrom(this.appSelector.neonColor$)
+      )),
+      map(([action, neonColor]) => {
+         if (action.type === changeNeonColor.type){
+           document.documentElement.style.setProperty('--neon-color', action.colorValue);
+           this.storageManager.setLocalItem(ApplicationParams.NEON_COLOR, action.colorValue);
+         } else {
+           document.documentElement.style.setProperty('--neon-color', action.value ? neonColor : 'no-neon');
+           this.storageManager.setLocalItem(ApplicationParams.NEON_COLOR, action.value ? neonColor : 'no-neon');
+         }
+        }
+      )), {dispatch: false});
+
+  changeNavBarPosition$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setDragNavPosition),
+      map(action => {
+            this.storageManager.setLocalItem(ApplicationParams.NAVBAR_POSITION, action.selectedIndex);
+        }
       )), {dispatch: false});
 
 
@@ -60,6 +87,9 @@ export class AppEffects {
   //     ), {dispatch: false});
 
   constructor(private actions$: Actions,
+              private store: Store,
+              private storageManager: StorageManagerService,
+              private appSelector: AppSelectors
   ) {
   }
 

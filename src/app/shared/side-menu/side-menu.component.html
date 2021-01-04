@@ -1,9 +1,16 @@
-<nav class="neon-border">
-  <ul>
-    <li>voce1</li>
-    <li>voce2</li>
-    <li>voce3</li>
-    <li>voce4</li>
-  </ul>
+<nav class="neon-shadow" #sideNav [class.orizontal]="navIdex === 1 || navIdex === 3">
+  <div class="wrapper" *ngIf="!canDragNav">
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+    <div>d</div>
+  </div>
+  <p *ngIf="canDragNav" style="text-align: center;"> DRAG ME</p>
 </nav>
 
+<div class="drop-zone-target">
+  <div [class.show]="canDragNav" class="drop-zone left"></div>
+  <div [class.show]="canDragNav" class="drop-zone top"></div>
+  <div [class.show]="canDragNav" class="drop-zone right"></div>
+  <div [class.show]="canDragNav" class="drop-zone bottom"></div>
+</div>

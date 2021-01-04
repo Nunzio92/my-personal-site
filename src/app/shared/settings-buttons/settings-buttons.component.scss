@@ -1,3 +1,22 @@
+:host {
+  user-select: none;
+}
+
+.setting {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+#settings {
+  position: fixed;
+  top: 25px;
+  right: 100px;
+  z-index: 2;
+  min-width: 145px
+}
+
 
 .checkbox-wrapper {
   //position: relative;
@@ -64,7 +83,6 @@
     left: 50%;
   }
 }
-
 
 
 .tgl-skewed {

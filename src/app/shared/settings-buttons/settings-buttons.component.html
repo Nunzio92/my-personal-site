@@ -1,0 +1,41 @@
+<!--    BOTTON FOR FOG ON / OFF-->
+<ng-container *ngrxLet="showSettings$; let showSetting">
+  <div id="settings" >
+    <ng-container *ngIf="!(canDragNav$ | async)">
+      <img class="setting" src="assets/icons8-settings.svg" height="40" width="40"
+           alt="" (click)="changeSettingStatus(showSetting)">
+      <div style="position: relative; top: 56px; background: #181818; padding: 16px" class="col" *ngIf="showSetting">
+        <div class="checkbox-wrapper row">
+          <h4>Fog</h4>
+          <input class="tgl tgl-skewed " [ngModel]="showFog" (click)="changeFogStatus()" id="cb3"
+                 type="checkbox"/>
+          <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb3"></label>
+        </div>
+        <div class="checkbox-wrapper row" style="top: 60px">
+          <h4>Light</h4>
+          <input class="tgl tgl-skewed " [ngModel]="neonStatus" (click)="changeNeonStatus()" id="cb4"
+                 type="checkbox"/>
+          <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb4"></label>
+        </div>
+        <ng-container *ngIf="neonStatus">
+          <label for="neon-color">Neon Color:</label>
+          <ng-select [searchable]="false" class="custom-select"
+                     [(ngModel)]="selectNeonColor"
+                     (change)="changeNeonColor()"
+                     [clearable]="false" id="neon-color"
+                     placeholder="Select Neon Color">
+            <ng-option *ngFor="let val of elencoColori"
+                       [value]="val.value">{{val.key | titlecase}}</ng-option>
+          </ng-select>
+        </ng-container>
+
+        <div class="checkbox-wrapper row" *ngrxLet="canDragNav$; let dragNav">
+          <h4>Drag Navbar</h4>
+          <input class="tgl tgl-skewed " [ngModel]="dragNav" (click)="activateDropNav()" id="cb5"
+                 type="checkbox"/>
+          <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb5"></label>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

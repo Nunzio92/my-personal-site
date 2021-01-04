@@ -11,14 +11,14 @@ import { devDep, environment } from '../environments/environment';
 import { AppStoreModule } from './store/app-store.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveComponentModule } from '@ngrx/component';
-import { SeggingsButtonsComponent } from './shared/settings-buttons/seggings-buttons.component';
+import { SettingsButtonsComponent } from './shared/settings-buttons/settings-buttons.component';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
 @NgModule({
   declarations: [
     AppComponent,
-    SeggingsButtonsComponent
+    SettingsButtonsComponent
   ],
   imports: [
     BrowserModule,
