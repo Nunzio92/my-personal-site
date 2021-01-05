@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { initialState } from '../../store/reducers/app.reducer';
+import { NavbarState } from '../../model/app-interfaces';
 
 @Component({
   selector: 'app-settings-buttons',
@@ -21,6 +22,7 @@ export class SettingsButtonsComponent implements OnInit, OnDestroy {
   neonStatus: boolean | undefined;
   showSettings$: Observable<boolean> = this.appStateSelector.showSettings$;
   canDragNav$: Observable<boolean> =  this.appStateSelector.canDragNav$;
+  navbarStatus$: Observable<NavbarState> =  this.appStateSelector.navbarStatus$;
 
   constructor(private store: Store,
               private appStateSelector: AppSelectors) { }

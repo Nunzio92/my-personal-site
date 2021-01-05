@@ -1,16 +1,35 @@
 <nav class="neon-shadow" #sideNav [class.orizontal]="navIdex === 1 || navIdex === 3">
-  <div class="wrapper" *ngIf="!canDragNav">
+  <div class="svg-wrapper" *ngIf="!isDraggingNav">
+<!--    <svg class="filter" style="margin-right: 0" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"-->
+<!--         height="20px"  preserveAspectRatio="xMinYMin meet">-->
+<!--      <polyline points="2,7 12,7" fill="none" stroke="white" stroke-width="1"-->
+<!--                stroke-miterlimit="10"-->
+<!--                stroke-linecap="round" stroke-linejoin="round"/>-->
+<!--      <polyline points="2,13 12,13" fill="none" stroke="white" stroke-width="1"-->
+<!--                stroke-miterlimit="10"-->
+<!--                stroke-linecap="round" stroke-linejoin="round"/>-->
+<!--    </svg>-->
+    <svg class="filter" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"
+         height="20px"  preserveAspectRatio="xMinYMin meet">
+      <polyline class="path" id="logo" points="2,2 12,10 2,18" fill="none" stroke="white" stroke-width="2"
+                stroke-miterlimit="10"
+                stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="wrapper" *ngIf="!isDraggingNav">
     <div>a</div>
     <div>b</div>
     <div>c</div>
     <div>d</div>
   </div>
-  <p *ngIf="canDragNav" style="text-align: center;"> DRAG ME</p>
+  <p *ngIf="isDraggingNav" style="margin: auto"> DRAG ME</p>
+  <div *ngIf="!isDraggingNav" class="allineatore"></div>
 </nav>
 
 <div class="drop-zone-target">
-  <div [class.show]="canDragNav" class="drop-zone left"></div>
-  <div [class.show]="canDragNav" class="drop-zone top"></div>
-  <div [class.show]="canDragNav" class="drop-zone right"></div>
-  <div [class.show]="canDragNav" class="drop-zone bottom"></div>
+  <div [class.show]="isDraggingNav" class="drop-zone left"></div>
+  <div [class.show]="isDraggingNav" class="drop-zone top"></div>
+  <div [class.show]="isDraggingNav" class="drop-zone right"></div>
+  <div [class.show]="isDraggingNav" class="drop-zone bottom"></div>
 </div>

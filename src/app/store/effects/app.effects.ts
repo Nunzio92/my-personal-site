@@ -43,6 +43,10 @@ export class AppEffects {
         if (!!neonColor){
           this.store.dispatch(changeNeonColor({colorValue: neonColor}));
         }
+        const navBarIndex = this.storageManager.getLocalItem(ApplicationParams.NAVBAR_POSITION);
+        if (!!navBarIndex){
+          this.store.dispatch(setDragNavPosition({selectedIndex: navBarIndex}));
+        }
         return from(this.promiseDeviceInfo()).pipe(map(
             (res) => {
               return successInitAppStore({

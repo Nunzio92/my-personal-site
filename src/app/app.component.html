@@ -1,25 +1,34 @@
 <ng-container *ngrxLet="fogStatus$; let fogStatus">
-    <div class="fog-container" *ngIf="fogStatus">
-      <div class="fog-img fog-img-first"></div>
-      <div class="fog-img fog-img-second"></div>
-    </div>
-    <!--    Wrapper for hide content during drag and drop + position relative -->
-    <section [class.hide]="dragActive$ | async" style="position: relative; margin: 70px 100px" id="contentWrapper">
-      <app-settings-buttons></app-settings-buttons>
-      <app-dark-modal *ngIf="modalIsOpen$ | async"></app-dark-modal>
-      <router-outlet style="z-index: 10"></router-outlet>
-      <app-mobile-navbar style="z-index: 20"></app-mobile-navbar>
-    </section>
-    <app-side-menu></app-side-menu>
+  <div class="fog-container" *ngIf="fogStatus">
+    <div class="fog-img fog-img-first"></div>
+    <div class="fog-img fog-img-second"></div>
+  </div>
+  <!--    Wrapper for hide content during drag and drop + position relative -->
+  <section [class.hide]="dragActive$ | async" style="position: relative; margin: 70px 100px" id="contentWrapper">
+    <app-settings-buttons></app-settings-buttons>
+    <app-dark-modal *ngIf="modalIsOpen$ | async"></app-dark-modal>
+    <router-outlet style="z-index: 10"></router-outlet>
+    <app-mobile-navbar style="z-index: 20"></app-mobile-navbar>
+  </section>
+
+  <app-side-menu></app-side-menu>
+
+
 
 </ng-container>
-
 
 <!-- Loading saber animation -->
 <div id="lightsaber">
   <div style="margin: auto;">
-    <span id="light" style="transform: rotate(55deg); margin: 0; height: 363px; position: relative; top: 109px;"></span>
-    <span id="light" style="transform: rotate(-55deg); margin: 0; height: 350px; position: relative; top: -95px;"></span>
+    <svg class="filter" baseProfile="tiny" id="svg1" xmlns="http://www.w3.org/2000/svg" width="200px"
+         height="140px"  preserveAspectRatio="xMinYMin meet">
+      <polyline id="poli" points="50,40 140,80 50,120" fill="none" stroke="white" stroke-width="8"
+                stroke-miterlimit="10"
+                stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+<!--    <svg style="position:absolute;">-->
+<!--      <text  x="80" y="120" fill="white" style="filter: none">Code with nunzio</text>-->
+<!--    </svg>-->
   </div>
 
 </div>

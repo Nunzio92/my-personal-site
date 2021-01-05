@@ -1,6 +1,6 @@
 <!--    BOTTON FOR FOG ON / OFF-->
 <ng-container *ngrxLet="showSettings$; let showSetting">
-  <div id="settings" >
+  <div class="settings-wrapper" [class.top-increase]="(navbarStatus$ | async)?.navbarIndex === 1">
     <ng-container *ngIf="!(canDragNav$ | async)">
       <img class="setting" src="assets/icons8-settings.svg" height="40" width="40"
            alt="" (click)="changeSettingStatus(showSetting)">

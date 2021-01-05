@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { initAppStore, startFog, stopFog } from './store';
+import { initAppStore } from './store';
 import { Observable } from 'rxjs';
 import { AppSelectors } from './store/services/app.selector';
-import { NavbarState } from './model/app-interfaces';
 import gsap from 'gsap';
+import Vivus from 'vivus';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'my-personal-site';
   modalIsOpen$: Observable<boolean>;
   fogStatus$: Observable<boolean>;
@@ -27,14 +28,19 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    var tl = gsap.timeline({repeat: 0});
+  }
+
+  ngAfterViewInit(): void {
+    const tl = gsap.timeline({repeat: 0, yoyo: true});
 
     tl.to('body', 0, {overflow: 'hidden'});
-    tl.to('#light', 0.5, {boxShadow: '0 0 5px #fff,0 0 8px #fff,0 0 12px #fff,0 0 15px blue,0 0 25px blue,#00ff66 0px 0px 250px 20px, blue 0px 0px 550px 20px'});
-    tl.to('#light', 0.5, { background: '#05401a', boxShadow: '#00ff66 0px 0px 250px 20px, blue 0px 0px 550px 20px',
-      // opacity: 0
-    });
-    tl.to('#lightsaber', 0.5, { opacity: 0, display: 'none'});
+    const vivus = new Vivus('svg1', // https://github.com/maxwellito/vivus
+      {duration: 50, animTimingFunction: Vivus.EASE}
+    );
+    // tl.fromTo('#poli', {drawSVG: '0%'} , {drawSVG: '100%', duration: 0.7, ease: 'power2.inOut'});
+    tl.to('#svg1', 0.6, {delay: 0.5, filter: 'drop-shadow(0 0 5px #000) drop-shadow(0 0 8px #fff) drop-shadow(0 0 12px #fff) drop-shadow(0 0 15px var(--neon-color)) drop-shadow(0 0 25px var(--neon-color)) drop-shadow( 0px 0px 250px #00ff66) drop-shadow( 0px 0px 550px var(--neon-color))'});
+    // tl.to('#svg1', 0.5, {filter: 'drop-shadow(0px 0px 250px #00ff66) drop-shadow(0px 0px 550px blue)', opacity: 0});
+    tl.to('#lightsaber', 0.3, {opacity: 0, display: 'none'});
     tl.to('body', 0, {overflow: 'visible'});
   }
 
