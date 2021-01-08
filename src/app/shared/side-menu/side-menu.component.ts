@@ -2,10 +2,10 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, 
 import gsap from 'gsap';
 import Draggable from 'gsap/Draggable';
 import { AppSelectors } from '../../store/services/app.selector';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import TweenLite from 'gsap/gsap-core';
 import { Store } from '@ngrx/store';
-import { setDragNavPosition } from '../../store';
+import { openGameMenu, setDragNavPosition } from '../../store';
 import { takeUntil } from 'rxjs/operators';
 import { StorageManagerService } from '../../core/storage-manager/storage-manager.service';
 
@@ -22,6 +22,8 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject<void>();
   private dropZones: any;
   navIdex = 0;
+  gameMenuIsOpened: Observable<boolean>;
+  navIdex$: Observable<number>;
 
 
   constructor(private render: Renderer2,
@@ -29,6 +31,8 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
               private store: Store,
               private storageManager: StorageManagerService,
               private appSelector: AppSelectors) {
+    this.gameMenuIsOpened = this.appSelector.gameMenuIsOpen$;
+    this.navIdex$ = this.appSelector.navbarIndex$;
   }
 
   ngOnInit(): void {
@@ -126,6 +130,9 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  openGameMenu(): void{
+    this.store.dispatch(openGameMenu());
+  }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();

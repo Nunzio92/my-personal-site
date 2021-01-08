@@ -1,19 +1,10 @@
-<nav class="neon-shadow" #sideNav [class.orizontal]="navIdex === 1 || navIdex === 3">
+<nav class="neon-shadow" #sideNav [class.orizontal]="(navIdex$| async) === 1 || (navIdex$ | async) === 3">
   <div class="svg-wrapper" *ngIf="!isDraggingNav">
-<!--    <svg class="filter" style="margin-right: 0" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"-->
-<!--         height="20px"  preserveAspectRatio="xMinYMin meet">-->
-<!--      <polyline points="2,7 12,7" fill="none" stroke="white" stroke-width="1"-->
-<!--                stroke-miterlimit="10"-->
-<!--                stroke-linecap="round" stroke-linejoin="round"/>-->
-<!--      <polyline points="2,13 12,13" fill="none" stroke="white" stroke-width="1"-->
-<!--                stroke-miterlimit="10"-->
-<!--                stroke-linecap="round" stroke-linejoin="round"/>-->
-<!--    </svg>-->
-    <svg class="filter" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"
-         height="20px"  preserveAspectRatio="xMinYMin meet">
-      <polyline class="path" id="logo" points="2,2 12,10 2,18" fill="none" stroke="white" stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round" stroke-linejoin="round"/>
+    <svg  class="filter" [class.game]="gameMenuIsOpened | async" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"
+         height="20px"  preserveAspectRatio="xMinYMin meet" (click)="openGameMenu()">
+      <path class="path" id="logo" d="M2,2 L12,10 L2,18"  fill="none" stroke="white" stroke-width="2"
+            stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </div>
 

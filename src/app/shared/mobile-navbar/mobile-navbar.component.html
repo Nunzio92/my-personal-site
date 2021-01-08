@@ -1,38 +1,35 @@
 <!-- Swiper -->
 <swiper [config]="config" #swiperMenu>
-    <div class="swiper-wrapper" style=" pointer-events: none;">
-        <div class="swiper-slide content" [class.opacity]="menuIsOpened"
-             style=" pointer-events: none;">
-            <div class="burger-menu-swiper" [class.change]="menuIsOpened"
-                 (click)="changeMenu()">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
-<!--          <div class="setting" (click)="changeMenu()" [class.change]="menuIsOpened">-->
-<!--            <img src="assets/icons8-settings.svg" height="40" width="40"-->
-<!--                 alt="">-->
-<!--          </div>-->
+  <div class="swiper-wrapper" style=" pointer-events: none;"  *ngrxLet="navbarIndex$; let navbarIndex">
+    <div class="swiper-slide content" [class.opacity]="menuIsOpened"
+         style=" pointer-events: none;">
+      <!--            <div class="burger-menu-swiper" [class.change]="menuIsOpened"-->
+      <!--                 (click)="changeMenu()">-->
+      <!--                <div class="bar1"></div>-->
+      <!--                <div class="bar2"></div>-->
+      <!--                <div class="bar3"></div>-->
+      <!--            </div>-->
 
-            <div class="scrollami-baby" *ngIf="!menuIsOpened"></div>
-            <div class="scrollami-baby expand-area" *ngIf="menuIsOpened" (click)="closeMenu()"></div>
-        </div>
-        <div class="swiper-slide menu">
-            <div class="nav-element row"
-                 (click)="closeMenu()"
-                 routerLinkActive="nav-element-active"
-                 [routerLink]="['/public']">login
-            </div>
-            <div class="nav-element row"
-                 (click)="closeMenu()"
-                 routerLinkActive="nav-element-active"
-                 [routerLink]="['/dicono_di_noi']">Dicono di noi
-            </div>
-            <div class="nav-element row"
-                 (click)="closeMenu()"
-                 routerLinkActive="nav-element-active"
-                 [routerLink]="['/team']">Il Team
-            </div>
-        </div>
+      <div class="scrollami-baby" *ngIf="!menuIsOpened && navbarIndex !== 2"></div>
+      <div class="scrollami-baby expand-area" *ngIf="menuIsOpened" (click)="closeMenu()"></div>
     </div>
+    <div class="swiper-slide menu" [class.custom-2]="navbarIndex === 2" [ngStyle]="{marginTop: navbarIndex === 1? '70px': undefined,
+    height: navbarIndex === 3 ? 'calc(100% - 70px)' : undefined}">
+      <div class="nav-element row"
+           (click)="closeMenu()"
+           routerLinkActive="nav-element-active"
+           [routerLink]="['/public']">Star WAR
+      </div>
+      <div class="nav-element row"
+           (click)="closeMenu()"
+           routerLinkActive="nav-element-active"
+           [routerLink]="['/dicono_di_noi']">3D crash
+      </div>
+      <div class="nav-element row"
+           (click)="closeMenu()"
+           routerLinkActive="nav-element-active"
+           [routerLink]="['/team']">Nature animation
+      </div>
+    </div>
+  </div>
 </swiper>

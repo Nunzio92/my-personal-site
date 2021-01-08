@@ -1,23 +1,29 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'ngx-useful-swiper';
-import { timer } from 'rxjs';
+import { Observable, Subject, timer } from 'rxjs';
+import { AppSelectors } from '../../store/services/app.selector';
+import { Store } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
+import { closeGameMenu, openGameMenu } from '../../store';
 
 @Component({
   selector: 'app-mobile-navbar',
   templateUrl: './mobile-navbar.component.html',
   styleUrls: ['./mobile-navbar.component.scss'],
 })
-export class MobileNavbarComponent implements OnInit, AfterViewInit {
+export class MobileNavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Lo swiper può essere un component pensante durante il rendering della pagina perchè attiva un listener su ogni spostamento del mouse.
    * Per questo viene inizializzato dopo 1.5 secondi per non appesantire eventuali view già pesanti da renderizzare
    */
+  private unsubscribe: Subject<void> = new Subject<void>();
+
 
   config: SwiperOptions = {
     slidesPerView: 'auto',
     initialSlide: 0,
-    resistanceRatio: 0,
+    // resistanceRatio: 0,
     shortSwipes: true,
     longSwipes: true,
     updateOnWindowResize: true,
@@ -31,11 +37,14 @@ export class MobileNavbarComponent implements OnInit, AfterViewInit {
     on: {
       reachEnd: () => {
         // console.log('reachEnd');
-        this.menuIsOpened = true;
+        this.store.dispatch(openGameMenu());
+        // this.menuIsOpened = true;
       },
       reachBeginning: () => {
         // console.log('reachBeginning');
-        this.menuIsOpened = false;
+        this.store.dispatch(closeGameMenu());
+
+        // this.menuIsOpened = false;
 
       }
     }
@@ -44,8 +53,11 @@ export class MobileNavbarComponent implements OnInit, AfterViewInit {
 
   // @ts-ignore
   @ViewChild('swiperMenu', {static: false}) swiperMenu: SwiperComponent;
+  navbarIndex$: Observable<number>;
 
-  constructor() {
+  constructor(private store: Store,
+              private appSelectors: AppSelectors) {
+    this.navbarIndex$ = this.appSelectors.navbarIndex$;
   }
 
   ngOnInit(): void {
@@ -57,10 +69,20 @@ export class MobileNavbarComponent implements OnInit, AfterViewInit {
       // this.swiperMenu.swiper.init();
       // this.swiperMenu.swiper.update();
     });
+    this.appSelectors.gameMenuIsOpen$.pipe(takeUntil(this.unsubscribe))
+      .subscribe(v => {
+        this.menuIsOpened = v;
+        v ? this.openMenu() : this.closeMenu();
+      });
   }
 
   closeMenu(): void {
     this.swiperMenu.swiper.slidePrev();
+  }
+
+  openMenu(): void {
+    this.swiperMenu.swiper.update();
+    this.swiperMenu.swiper.slideNext();
   }
 
 
@@ -70,6 +92,11 @@ export class MobileNavbarComponent implements OnInit, AfterViewInit {
     } else {
       this.swiperMenu.swiper.slideNext();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

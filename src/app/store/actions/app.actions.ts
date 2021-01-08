@@ -79,4 +79,10 @@ export const setDragNavPosition = createAction(
   props<{ selectedIndex: number }>()
 );
 
+export const openGameMenu = createAction(
+  '[LOGO] OPEN_GAME_MENU',
+);
+export const closeGameMenu = createAction(
+  '[LOGO] CLOSE_GAME_MENU',
+);
 

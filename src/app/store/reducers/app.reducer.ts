@@ -9,7 +9,7 @@ import {
   startLoading,
   stopFog,
   stopLoading,
-  successInitAppStore
+  successInitAppStore, openGameMenu, closeGameMenu
 } from '../actions';
 import { DeviceInfo } from '../../model/device-info';
 import { ScrollState, SiteSettings } from '../../model/app-interfaces';
@@ -20,6 +20,7 @@ export interface AppState {
   loading: boolean;
   scrollState: ScrollState;
   deviceInfo: DeviceInfo | null;
+  gameMenuisOpen: boolean;
   modalIsOpen: boolean;
   settings: SiteSettings;
 }
@@ -31,6 +32,7 @@ export const initialState: AppState = {
     yOffset: 0
   },
   deviceInfo: null,
+  gameMenuisOpen: false,
   modalIsOpen: false,
   settings: {showSettings: false, fog: false, navBarStatus: {canDragNav: false, navbarIndex: 0}, neonStatus: {visible: true, activeColor: 'purple'}}
 };
@@ -48,6 +50,9 @@ const appReducer = createReducer(initialState,
   on(hideSetting, (state) => ({...state,  settings: {...state.settings, showSettings: false}})),
   on(activeDragNav, (state) => ({...state,  settings: {...state.settings, navBarStatus: {...state.settings.navBarStatus, canDragNav: true}}})),
   on(setDragNavPosition, (state, {selectedIndex}) => ({...state,  settings: {...state.settings, navBarStatus: {...state.settings.navBarStatus, canDragNav: false, navbarIndex: selectedIndex}}})),
+  on(openGameMenu, (state) => ({...state,  gameMenuisOpen: true, settings: {...state.settings, showSettings: false}})),
+  on(closeGameMenu, (state) => ({...state,  gameMenuisOpen: false})),
+
 );
 
 

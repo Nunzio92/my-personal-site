@@ -7,6 +7,7 @@ import { DarkModalComponent } from './dark-modal/dark-modal.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
+import { ReactiveComponentModule } from '@ngrx/component';
 
 
 @NgModule({
@@ -14,13 +15,14 @@ import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
     TeleportHtmlDirective,
     DarkModalComponent,
     SideMenuComponent,
-    MobileNavbarComponent
+    MobileNavbarComponent,
   ],
   imports: [
     CommonModule,
     NgxUsefulSwiperModule,
     RouterModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveComponentModule
   ],
     exports: [
         NgxUsefulSwiperModule,
