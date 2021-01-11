@@ -1,25 +1,26 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import gsap from 'gsap';
 import Draggable from 'gsap/Draggable';
 import { AppSelectors } from '../../store/services/app.selector';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import TweenLite from 'gsap/gsap-core';
 import { Store } from '@ngrx/store';
 import { openGameMenu, setDragNavPosition } from '../../store';
 import { takeUntil } from 'rxjs/operators';
 import { StorageManagerService } from '../../core/storage-manager/storage-manager.service';
+import { DestroyService } from '../../core/destroy.service';
 
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.scss']
+  styleUrls: ['./side-menu.component.scss'],
+  providers: [DestroyService]
 })
-export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SideMenuComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sideNav') sideNav: ElementRef | undefined;
   @ViewChild('dropArea') dropArea: ElementRef | undefined;
   isDraggingNav: undefined | boolean = false;
-  private unsubscribe: Subject<void> = new Subject<void>();
   private dropZones: any;
   navIdex = 0;
   gameMenuIsOpened: Observable<boolean>;
@@ -30,7 +31,8 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
               private elementRef: ElementRef,
               private store: Store,
               private storageManager: StorageManagerService,
-              private appSelector: AppSelectors) {
+              private appSelector: AppSelectors,
+              @Inject(DestroyService) private destroy$: DestroyService) {
     this.gameMenuIsOpened = this.appSelector.gameMenuIsOpen$;
     this.navIdex$ = this.appSelector.navbarIndex$;
   }
@@ -41,7 +43,7 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.appSelector.navbarStatus$.pipe(takeUntil(this.unsubscribe)).subscribe(v => {
+    this.appSelector.navbarStatus$.pipe(takeUntil(this.destroy$)).subscribe(v => {
       this.isDraggingNav = v?.canDragNav;
       this.navIdex = v?.navbarIndex;
       if (this.navIdex !== undefined) {
@@ -132,11 +134,6 @@ export class SideMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openGameMenu(): void{
     this.store.dispatch(openGameMenu());
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
 }

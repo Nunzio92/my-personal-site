@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppSelectors } from '../../store/services/app.selector';
 import { activeDragNav, changeNeonColor, changeNeonStatus, hideSetting, showSetting, startFog, stopFog } from '../../store';
@@ -7,14 +7,15 @@ import { Observable, Subject } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { initialState } from '../../store/reducers/app.reducer';
 import { NavbarState } from '../../model/app-interfaces';
+import { DestroyService } from '../../core/destroy.service';
 
 @Component({
   selector: 'app-settings-buttons',
   templateUrl: './settings-buttons.component.html',
-  styleUrls: ['./settings-buttons.component.scss']
+  styleUrls: ['./settings-buttons.component.scss'],
+  providers: [DestroyService]
 })
-export class SettingsButtonsComponent implements OnInit, OnDestroy {
-  private unsubscribe: Subject<void> = new Subject<void>();
+export class SettingsButtonsComponent implements OnInit {
   selectNeonColor = initialState.settings.neonStatus.activeColor;
 
   showFog = false;
@@ -25,12 +26,13 @@ export class SettingsButtonsComponent implements OnInit, OnDestroy {
   navbarStatus$: Observable<NavbarState> =  this.appStateSelector.navbarStatus$;
 
   constructor(private store: Store,
-              private appStateSelector: AppSelectors) { }
+              private appStateSelector: AppSelectors,
+              @Inject(DestroyService) private destroy$: DestroyService) { }
 
   ngOnInit(): void {
-    this.appStateSelector.fogStatus$.pipe(takeUntil(this.unsubscribe))
+    this.appStateSelector.fogStatus$.pipe(takeUntil(this.destroy$))
       .subscribe(v => this.showFog = v);
-    this.appStateSelector.neonStatus$.pipe(takeUntil(this.unsubscribe))
+    this.appStateSelector.neonStatus$.pipe(takeUntil(this.destroy$))
       .subscribe(v => {
         this.neonStatus = v.visible;
         this.selectNeonColor = v.activeColor;
@@ -57,8 +59,4 @@ export class SettingsButtonsComponent implements OnInit, OnDestroy {
     this.store.dispatch( activeDragNav());
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
 }

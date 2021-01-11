@@ -8,7 +8,7 @@
     <app-settings-buttons></app-settings-buttons>
     <app-dark-modal *ngIf="modalIsOpen$ | async"></app-dark-modal>
     <router-outlet style="z-index: 10"></router-outlet>
-    <app-mobile-navbar style="z-index: 20"></app-mobile-navbar>
+    <app-mobile-navbar *ngIf="!fogStatus" style="z-index: 20"></app-mobile-navbar>
   </section>
 
   <app-side-menu style="z-index: 21"></app-side-menu>
@@ -18,7 +18,7 @@
 
 <!-- Loading saber animation -->
 <div id="lightsaber">
-  <div style="margin: auto;">
+  <div style="margin: auto">
     <svg class="filter" baseProfile="tiny" id="svg1" xmlns="http://www.w3.org/2000/svg" width="200px"
          height="140px"  preserveAspectRatio="xMinYMin meet">
       <polyline id="poli" points="50,40 140,80 50,120" fill="none" stroke="white" stroke-width="8"
