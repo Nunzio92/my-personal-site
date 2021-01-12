@@ -27,7 +27,7 @@ export class SettingsButtonsComponent implements OnInit {
 
   constructor(private store: Store,
               private appStateSelector: AppSelectors,
-              @Inject(DestroyService) private destroy$: DestroyService) { }
+              private destroy$: DestroyService) { }
 
   ngOnInit(): void {
     this.appStateSelector.fogStatus$.pipe(takeUntil(this.destroy$))

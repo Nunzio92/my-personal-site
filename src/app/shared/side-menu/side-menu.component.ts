@@ -32,12 +32,13 @@ export class SideMenuComponent implements OnInit, AfterViewInit {
               private store: Store,
               private storageManager: StorageManagerService,
               private appSelector: AppSelectors,
-              @Inject(DestroyService) private destroy$: DestroyService) {
+              private destroy$: DestroyService) {
     this.gameMenuIsOpened = this.appSelector.gameMenuIsOpen$;
     this.navIdex$ = this.appSelector.navbarIndex$;
   }
 
   ngOnInit(): void {
+    this.destroy$.subscribe(_ => console.log('comp2'));
     gsap.registerPlugin(Draggable);
     this.dropZones = this.elementRef.nativeElement.querySelectorAll('.drop-zone');
   }

@@ -13,23 +13,26 @@
       <div class="scrollami-baby" *ngIf="!menuIsOpened && navbarIndex !== 2"></div>
       <div class="scrollami-baby expand-area" *ngIf="menuIsOpened" (click)="closeMenu()"></div>
     </div>
-    <div class="swiper-slide menu" [class.custom-2]="navbarIndex === 2" [ngStyle]="{marginTop: navbarIndex === 1? '70px': undefined,
+    <div class="swiper-slide slide-with-menu" [class.custom-2]="navbarIndex === 2" [ngStyle]="{marginTop: navbarIndex === 1? '70px': undefined,
     height: navbarIndex === 3 ? 'calc(100% - 70px)' : undefined}">
-      <div class="nav-element row"
-           (click)="closeMenu()"
-           routerLinkActive="nav-element-active"
-           [routerLink]="['/public']">Star WAR
+      <div class="menu">
+        <div class="nav-element row"
+             (click)="closeMenu()"
+             routerLinkActive="nav-element-active"
+             [routerLink]="['/public']">Star WAR
+        </div>
+        <div class="nav-element row"
+             (click)="closeMenu()"
+             routerLinkActive="nav-element-active"
+             [routerLink]="['/dicono_di_noi']">3D crash
+        </div>
+        <div class="nav-element row"
+             (click)="closeMenu()"
+             routerLinkActive="nav-element-active"
+             [routerLink]="['/team']">Nature animation
+        </div>
       </div>
-      <div class="nav-element row"
-           (click)="closeMenu()"
-           routerLinkActive="nav-element-active"
-           [routerLink]="['/dicono_di_noi']">3D crash
-      </div>
-      <div class="nav-element row"
-           (click)="closeMenu()"
-           routerLinkActive="nav-element-active"
-           [routerLink]="['/team']">Nature animation
-      </div>
+
     </div>
   </div>
 </swiper>

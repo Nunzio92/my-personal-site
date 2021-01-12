@@ -22,6 +22,7 @@
         text-align:center;
         z-index: 1000;
         background: #1d1d1d;
+        animation:spin 4s linear infinite;
       }
       #lightsaber span { display:inline-block; }
 
@@ -37,7 +38,9 @@
         -webkit-transition: all 1s;
         -moz-transition: all 1s;
         transition: all 1s;
+        animation:spin 4s linear infinite;
       }
+      @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
     </style>
     <div id="lightsaber">
       <span id="light"></span>

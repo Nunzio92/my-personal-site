@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { initAppStore } from './store';
 import { Observable, timer } from 'rxjs';
 import { AppSelectors } from './store/services/app.selector';
 import gsap from 'gsap';
-import Vivus from 'vivus';
 
 
 @Component({
@@ -18,8 +17,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   fogStatus$: Observable<boolean>;
   dragActive$: Observable<boolean>;
 
-
   constructor(private store: Store,
+              private renderer: Renderer2,
               private appStateSelector: AppSelectors) {
     this.modalIsOpen$ = this.appStateSelector.modalIsOpen$;
     this.fogStatus$ = this.appStateSelector.fogStatus$;
@@ -31,20 +30,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    gsap.to('#svg1', 0, { visibility: 'hidden'});
-
-    timer(500).subscribe( _ => {
-      gsap.to('#svg1', 0, { visibility: 'visible'});
+    timer(1000).subscribe(_ => {
       const tl = gsap.timeline({repeat: 0, yoyo: true});
-      tl.to('body', 0, {overflow: 'hidden'});
-      const vivus = new Vivus('svg1', // https://github.com/maxwellito/vivus
-        {duration: 50, animTimingFunction: Vivus.EASE, onReady: vivusInstance => vivusInstance.play()}
-      );
-      // tl.fromTo('#poli', {drawSVG: '0%'} , {drawSVG: '100%', duration: 0.7, ease: 'power2.inOut'});
-      tl.to('#svg1', 0.6, {delay: 0.5, filter: 'drop-shadow(0 0 5px #000) drop-shadow(0 0 8px #fff) drop-shadow(0 0 12px #fff) drop-shadow(0 0 15px var(--neon-color)) drop-shadow(0 0 25px var(--neon-color)) drop-shadow( 0px 0px 250px #00ff66) drop-shadow( 0px 0px 550px var(--neon-color))'});
+      tl.to('body', {overflow: 'hidden', duration: 0});
+      tl.to('#svg1', {animation: 'draw 1s linear forwards', duration: 0});
+      tl.to('#svg1', {
+        delay: 0.5,
+        duration: 0.6,
+        filter: 'drop-shadow(0 0 5px #000) drop-shadow(0 0 8px #fff) drop-shadow(0 0 12px #fff) drop-shadow(0 0 15px var(--neon-color)) drop-shadow(0 0 25px var(--neon-color)) drop-shadow( 0px 0px 250px #00ff66) drop-shadow( 0px 0px 550px var(--neon-color))'
+      });
       // tl.to('#svg1', 0.5, {filter: 'drop-shadow(0px 0px 250px #00ff66) drop-shadow(0px 0px 550px blue)', opacity: 0});
-      tl.to('#lightsaber', 0.3, {opacity: 0, display: 'none'});
-      tl.to('body', 0, {overflow: 'visible'});
+      tl.to('#lightsaber', {duration: 0.3, opacity: 0, display: 'none'});
+      tl.to('body', {duration: 0, overflow: 'visible'});
     });
   }
 

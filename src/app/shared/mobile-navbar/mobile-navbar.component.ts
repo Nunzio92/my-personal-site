@@ -58,7 +58,7 @@ export class MobileNavbarComponent implements OnInit, AfterViewInit {
 
   constructor(private store: Store,
               private appSelectors: AppSelectors,
-              @Inject(DestroyService) private destroy$: DestroyService) {
+              private destroy$: DestroyService) {
     this.navbarIndex$ = this.appSelectors.navbarIndex$;
   }
 
