@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppSelectors } from '../../store/services/app.selector';
 import { activeDragNav, changeNeonColor, changeNeonStatus, hideSetting, showSetting, startFog, stopFog } from '../../store';
@@ -13,7 +13,7 @@ import { DestroyService } from '../../core/destroy.service';
   selector: 'app-settings-buttons',
   templateUrl: './settings-buttons.component.html',
   styleUrls: ['./settings-buttons.component.scss'],
-  providers: [DestroyService]
+  providers: [DestroyService],
 })
 export class SettingsButtonsComponent implements OnInit {
   selectNeonColor = initialState.settings.neonStatus.activeColor;

@@ -1,6 +1,6 @@
 <nav class="neon-shadow" #sideNav [class.orizontal]="(navIdex$| async) === 1 || (navIdex$ | async) === 3">
   <div class="svg-wrapper" *ngIf="!isDraggingNav">
-    <svg  class="filter" [class.game]="gameMenuIsOpened | async" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"
+    <svg  class="filter" [class.game]="gameMenuIsOpened | async" routerLink="/landing" baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="15px"
          height="20px"  preserveAspectRatio="xMinYMin meet" (click)="openGameMenu()">
       <path class="path" id="logo" d="M2,2 L12,10 L2,18"  fill="none" stroke="white" stroke-width="2"
             stroke-miterlimit="10"
@@ -18,7 +18,7 @@
   <div *ngIf="!isDraggingNav" class="allineatore"></div>
 </nav>
 
-<div class="drop-zone-target">
+<div class="drop-zone-target" [hidden]="!isDraggingNav">
   <div [class.show]="isDraggingNav" class="drop-zone left"></div>
   <div [class.show]="isDraggingNav" class="drop-zone top"></div>
   <div [class.show]="isDraggingNav" class="drop-zone right"></div>

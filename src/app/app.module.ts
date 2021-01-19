@@ -12,13 +12,15 @@ import { AppStoreModule } from './store/app-store.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { SettingsButtonsComponent } from './shared/settings-buttons/settings-buttons.component';
+import { LandingComponent } from './landing/landing.component';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
 @NgModule({
   declarations: [
     AppComponent,
-    SettingsButtonsComponent
+    SettingsButtonsComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +30,9 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
     StoreModule.forRoot({}, {
         metaReducers,
         runtimeChecks: {
-          // strictStateImmutability: true,
-          // strictActionImmutability: true,
-          // strictStateSerializability: true,
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
           // strictActionSerializability: true,
         }
       }

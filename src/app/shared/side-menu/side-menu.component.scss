@@ -1,6 +1,9 @@
 :host {
   user-select: none;
 }
+svg{
+  outline: none;
+}
 
 nav {
   width: 70px;
@@ -66,6 +69,7 @@ nav {
   svg {
     margin: 40px auto;
     cursor: pointer;
+
 
     &:hover path,
     &.game path{

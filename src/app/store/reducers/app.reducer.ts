@@ -13,6 +13,7 @@ import {
 } from '../actions';
 import { DeviceInfo } from '../../model/device-info';
 import { ScrollState, SiteSettings } from '../../model/app-interfaces';
+import { immerOn } from 'ngrx-immer/store';
 
 
 export interface AppState {
@@ -45,7 +46,8 @@ const appReducer = createReducer(initialState,
   on(startFog, (state) => ({...state,  settings: {...state.settings, fog: true}})),
   on(stopFog, (state) => ({...state,  settings: {...state.settings, fog: false}})),
   on(changeNeonStatus, (state, {value}) => ({...state,  settings: {...state.settings, neonStatus: {...state.settings.neonStatus, visible: value}}})),
-  on(changeNeonColor, (state, {colorValue}) => ({...state,  settings: {...state.settings, neonStatus: {...state.settings.neonStatus, activeColor: colorValue}}})),
+  // on(changeNeonColor, (state, {colorValue}) => ({...state,  settings: {...state.settings, neonStatus: {...state.settings.neonStatus, activeColor: colorValue}}})),
+  immerOn(changeNeonColor, (state, {colorValue}) => { state.settings.neonStatus.activeColor = colorValue; state.settings.showSettings = false; }),
   on(showSetting, (state) => ({...state,  settings: {...state.settings, showSettings: true}})),
   on(hideSetting, (state) => ({...state,  settings: {...state.settings, showSettings: false}})),
   on(activeDragNav, (state) => ({...state,  settings: {...state.settings, navBarStatus: {...state.settings.navBarStatus, canDragNav: true}}})),

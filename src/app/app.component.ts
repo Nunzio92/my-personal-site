@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { initAppStore } from './store';
 import { Observable, timer } from 'rxjs';
@@ -9,7 +9,7 @@ import gsap from 'gsap';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'my-personal-site';
