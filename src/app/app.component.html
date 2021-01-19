@@ -4,7 +4,7 @@
     <div class="fog-img fog-img-second"></div>
   </div>
   <!--    Wrapper for hide content during drag and drop + position relative -->
-  <section [class.hide]="dragActive$ | async" style="position: relative; margin: 70px 100px" id="contentWrapper">
+  <section [class.hide]="dragActive$ | async" style="position: relative; margin: 100px 100px" id="contentWrapper">
     <app-settings-buttons></app-settings-buttons>
     <app-dark-modal *ngIf="modalIsOpen$ | async"></app-dark-modal>
     <router-outlet style="z-index: 10"></router-outlet>
