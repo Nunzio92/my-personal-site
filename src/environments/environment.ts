@@ -13,7 +13,7 @@ export const devDep = [
     name: 'My-personal-site',
     maxAge: 35, // Retains last 35 states
     logOnly: environment.production, // Restrict extension to log-only mode
-    actionsBlocklist: ['[NATIVE_ACTION] SCROLL_UP', '[NATIVE_ACTION] SCROLL_DOWN', '[Spinner] START_LOADING', '[Spinner] STOP_LOADING']
+    actionsBlocklist: ['[NATIVE_ACTION] SCROLL_UP', '[NATIVE_ACTION] SCROLL_DOWN', '[Spinner] START_LOADING', '[Spinner] STOP_LOADING', '[SETTINGS] HIDE_SETTING']
   }),
   // environment.mockEnable ? MockModule.forRoot() : MockModule
 ];

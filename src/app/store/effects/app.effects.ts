@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { changeNeonColor, changeNeonStatus, initAppStore, scrollDown, scrollUp, setDragNavPosition, successInitAppStore } from '../actions';
-import { auditTime, concatMap, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { auditTime, concatMap, filter, map, switchMap, takeUntil, tap, toArray, withLatestFrom } from 'rxjs/operators';
 
-import { from, fromEvent, of } from 'rxjs';
+import { from, fromEvent, of, OperatorFunction, pipe, ReplaySubject, timer } from 'rxjs';
 import { DeviceInfo } from '../../model/device-info';
 import { Capacitor, Device } from '@capacitor/core';
 import { AppSelectors } from '../services/app.selector';
 import { StorageManagerService } from '../../core/storage-manager/storage-manager.service';
 import { ApplicationParams } from '../../shared/application-params';
-import { Store } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
+import { INITIAL_OPTIONS, LiftedState, StoreDevtools, StoreDevtoolsConfig } from '@ngrx/store-devtools';
+import { STORE_DEVTOOLS_CONFIG } from '@ngrx/store-devtools/src/config';
+import { DevtoolsExtension } from '@ngrx/store-devtools/src/extension';
 
 
 @Injectable()

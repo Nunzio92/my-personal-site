@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { SettingsButtonsComponent } from './shared/settings-buttons/settings-buttons.component';
 import { LandingComponent } from './landing/landing.component';
+import { StoreDevtoolsConfig, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BugReportingEffects } from './store/effects/bug-reporting.effects';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
@@ -30,20 +32,20 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
     StoreModule.forRoot({}, {
         metaReducers,
         runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true,
-          strictStateSerializability: true,
+          // strictStateImmutability: true,
+          // strictActionImmutability: true,
+          // strictStateSerializability: true,
           // strictActionSerializability: true,
         }
       }
     ),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([BugReportingEffects]),
     AppStoreModule,
     ReactiveComponentModule,
     devDep,
     FormsModule
   ],
-  providers: [],
+  providers: [StoreDevtoolsConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule {

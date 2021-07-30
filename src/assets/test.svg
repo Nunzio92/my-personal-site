@@ -1,6 +1,7 @@
 <svg  baseProfile="tiny"  xmlns="http://www.w3.org/2000/svg" width="14px"
-     height="25px"  preserveAspectRatio="xMinYMin meet">
-  <polyline points="2,2 12,10 2,18" fill="none" stroke="white" stroke-width="2"
+     height="25px"  preserveAspectRatio="xMinYMin meet"
+style="filter: drop-shadow(0 0 1px #FFFF00) drop-shadow(0 0 0.5px #ff5100) drop-shadow(0 0 2px #FFFF00)">
+  <polyline points="2,2 12,10 2,18" fill="none" stroke="black" stroke-width="2"
             stroke-miterlimit="10"
             stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

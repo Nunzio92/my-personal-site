@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import TweenLite from 'gsap/gsap-core';
 import { Store } from '@ngrx/store';
 import { openGameMenu, setDragNavPosition } from '../../store';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { StorageManagerService } from '../../core/storage-manager/storage-manager.service';
 import { DestroyService } from '../../core/destroy.service';
 

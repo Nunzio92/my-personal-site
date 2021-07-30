@@ -1,9 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { initAppStore } from './store';
-import { Observable, timer } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { AppSelectors } from './store/services/app.selector';
 import gsap from 'gsap';
+import { BugReportingEffects } from './store/effects/bug-reporting.effects';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -19,17 +21,24 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private store: Store,
               private renderer: Renderer2,
+              private debug: BugReportingEffects,
               private appStateSelector: AppSelectors) {
     this.modalIsOpen$ = this.appStateSelector.modalIsOpen$;
     this.fogStatus$ = this.appStateSelector.fogStatus$;
     this.dragActive$ = this.appStateSelector.canDragNav$;
     this.store.dispatch(initAppStore());
+
   }
 
   ngOnInit(): void {
+    let sub: Subscription;
+    // console.log(sub);
+    timer(4000).subscribe(_ => sub = this.debug.getActionStack().subscribe(v => console.log(v)));
+    timer(5000).subscribe(_ => console.log(sub));
   }
 
   ngAfterViewInit(): void {
+
     timer(1000).subscribe(_ => {
       const tl = gsap.timeline({repeat: 0, yoyo: true});
       tl.to('body', {overflow: 'hidden', duration: 0});

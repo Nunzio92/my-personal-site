@@ -14,6 +14,7 @@ import {
 import { DeviceInfo } from '../../model/device-info';
 import { ScrollState, SiteSettings } from '../../model/app-interfaces';
 import { immerOn } from 'ngrx-immer/store';
+import produce from 'immer';
 
 
 export interface AppState {
@@ -35,7 +36,7 @@ export const initialState: AppState = {
   deviceInfo: null,
   gameMenuisOpen: false,
   modalIsOpen: false,
-  settings: {showSettings: false, fog: false, navBarStatus: {canDragNav: false, navbarIndex: 0}, neonStatus: {visible: true, activeColor: 'purple'}}
+  settings: {showSettings: false, fog: false, navBarStatus: {canDragNav: false, navbarIndex: 0}, neonStatus: {visible: true, activeColor: 'purple'}},
 };
 const appReducer = createReducer(initialState,
   on(startLoading, (state) => ({...state, loading: true})),
@@ -54,6 +55,7 @@ const appReducer = createReducer(initialState,
   on(setDragNavPosition, (state, {selectedIndex}) => ({...state,  settings: {...state.settings, navBarStatus: {...state.settings.navBarStatus, canDragNav: false, navbarIndex: selectedIndex}}})),
   on(openGameMenu, (state) => ({...state,  gameMenuisOpen: true, settings: {...state.settings, showSettings: false}})),
   on(closeGameMenu, (state) => ({...state,  gameMenuisOpen: false})),
+
 
 );
 
