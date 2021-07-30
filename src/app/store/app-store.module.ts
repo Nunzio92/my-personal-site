@@ -6,8 +6,6 @@ import { reducers } from './reducers';
 import { AppEffects } from './effects/app.effects';
 import { RedirectEffects } from './effects/redirect.effects';
 import { AppSelectors } from './services/app.selector';
-import { StoreDevtoolsConfig } from '@ngrx/store-devtools';
-import { BugReportingEffects } from './effects/bug-reporting.effects';
 
 @NgModule({
     declarations: [],

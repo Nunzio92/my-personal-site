@@ -13,8 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { SettingsButtonsComponent } from './shared/settings-buttons/settings-buttons.component';
 import { LandingComponent } from './landing/landing.component';
-import { StoreDevtoolsConfig, StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BugReportingEffects } from './store/effects/bug-reporting.effects';
+import { StoreDevtoolsConfig } from '@ngrx/store-devtools';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
@@ -39,7 +38,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
         }
       }
     ),
-    EffectsModule.forRoot([BugReportingEffects]),
+    EffectsModule.forRoot(),
     AppStoreModule,
     ReactiveComponentModule,
     devDep,
